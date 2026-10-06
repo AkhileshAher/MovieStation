@@ -8,4 +8,7 @@ import lombok.Data;
 @Entity
 @Table
 public class Booking {
+
+
+
 }
