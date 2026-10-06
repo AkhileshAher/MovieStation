@@ -1,5 +1,2 @@
 server:
-  servlet:
-    context-path: /api/v1
-
   port: 9874
