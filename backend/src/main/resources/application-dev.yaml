@@ -1,2 +1,21 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hiberante.dialect.MySQLDialect
+    show-sql: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiry: ${JWT_EXPIRY}
+
 server:
   port: 9874
