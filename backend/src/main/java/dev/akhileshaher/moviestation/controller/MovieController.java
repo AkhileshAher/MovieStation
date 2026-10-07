@@ -3,6 +3,7 @@ package dev.akhileshaher.moviestation.controller;
 import dev.akhileshaher.moviestation.dto.MovieDTO;
 import dev.akhileshaher.moviestation.entity.Movie;
 import dev.akhileshaher.moviestation.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +23,7 @@ public class MovieController {
 
     @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Movie> addMovie(@RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<Movie> addMovie(@Valid @RequestBody MovieDTO movieDTO) {
         return ResponseEntity.ok(movieService.addMovie(movieDTO));
     }
 
@@ -49,7 +50,7 @@ public class MovieController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @Valid @RequestBody MovieDTO movieDTO) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(movieService.updateMovie(id,movieDTO));
     }
 

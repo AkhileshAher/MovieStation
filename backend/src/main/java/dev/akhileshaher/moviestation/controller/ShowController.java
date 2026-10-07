@@ -3,6 +3,7 @@ package dev.akhileshaher.moviestation.controller;
 import dev.akhileshaher.moviestation.dto.ShowDTO;
 import dev.akhileshaher.moviestation.entity.Show;
 import dev.akhileshaher.moviestation.service.ShowService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ShowController {
     }
 
     @PostMapping()
-    public ResponseEntity<Show> createShow(@RequestBody ShowDTO showDTO) {
+    public ResponseEntity<Show> createShow(@Valid @RequestBody ShowDTO showDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(showService.createShow(showDTO));
     }
 
@@ -40,7 +41,7 @@ public class ShowController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Show> updateShow(@PathVariable Long id,@RequestBody ShowDTO showDTO) {
+    public ResponseEntity<Show> updateShow(@PathVariable Long id,@Valid @RequestBody ShowDTO showDTO) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(showService.updateShow(id,showDTO));
     }
 

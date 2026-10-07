@@ -5,6 +5,7 @@ import dev.akhileshaher.moviestation.dto.LoginResponseDTO;
 import dev.akhileshaher.moviestation.dto.RegisterRequestDTO;
 import dev.akhileshaher.moviestation.entity.User;
 import dev.akhileshaher.moviestation.service.AuthenticationService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,12 +23,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerNormalUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
+    public ResponseEntity<User> registerNormalUser(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
         return ResponseEntity.ok(authenticationService.registerNormalUser(registerRequestDTO));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
         return ResponseEntity.ok(authenticationService.login(loginRequestDTO));
     }
 }

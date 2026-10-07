@@ -3,6 +3,7 @@ package dev.akhileshaher.moviestation.controller;
 import dev.akhileshaher.moviestation.dto.RegisterRequestDTO;
 import dev.akhileshaher.moviestation.entity.User;
 import dev.akhileshaher.moviestation.service.AuthenticationService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class AdminController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerNormalUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
+    public ResponseEntity<User> registerNormalUser(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
         return ResponseEntity.ok(authenticationService.registerAdminUser(registerRequestDTO));
     }
 

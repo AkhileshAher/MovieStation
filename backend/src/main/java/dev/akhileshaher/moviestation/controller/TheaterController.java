@@ -3,6 +3,7 @@ package dev.akhileshaher.moviestation.controller;
 import dev.akhileshaher.moviestation.dto.TheaterDTO;
 import dev.akhileshaher.moviestation.entity.Theater;
 import dev.akhileshaher.moviestation.service.TheaterService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +23,7 @@ public class TheaterController {
 
     @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Theater> addTheater(@RequestBody TheaterDTO theaterDTO){
+    public ResponseEntity<Theater> addTheater(@Valid @RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(theaterService.addTheater(theaterDTO));
     }
 
@@ -33,7 +34,7 @@ public class TheaterController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Theater> updateTheater(@PathVariable Long id,@RequestBody TheaterDTO theaterDTO){
+    public ResponseEntity<Theater> updateTheater(@PathVariable Long id,@Valid @RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(theaterService.updateTheater(id,theaterDTO));
     }
 

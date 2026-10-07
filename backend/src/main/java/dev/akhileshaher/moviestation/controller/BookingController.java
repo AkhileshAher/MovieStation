@@ -5,6 +5,7 @@ import dev.akhileshaher.moviestation.entity.Booking;
 import dev.akhileshaher.moviestation.entity.BookingStatus;
 import dev.akhileshaher.moviestation.repository.BookingRepository;
 import dev.akhileshaher.moviestation.service.BookingService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class BookingController {
     }
 
     @PostMapping()
-    public ResponseEntity<Booking> createBooking(@RequestBody BookingDTO bookingDTO) {
+    public ResponseEntity<Booking> createBooking(@Valid @RequestBody BookingDTO bookingDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.createBooking(bookingDTO));
     }
 
