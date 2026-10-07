@@ -3,7 +3,6 @@ package dev.akhileshaher.moviestation.repository;
 import dev.akhileshaher.moviestation.entity.Theater;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.lang.ScopedValue;
 import java.util.List;
 import java.util.Optional;
 

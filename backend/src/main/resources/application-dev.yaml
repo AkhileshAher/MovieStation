@@ -10,7 +10,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hiberante.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
 
 jwt:

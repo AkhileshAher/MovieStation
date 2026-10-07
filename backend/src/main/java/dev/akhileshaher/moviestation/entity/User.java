@@ -1,5 +1,7 @@
 package dev.akhileshaher.moviestation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +24,13 @@ public class User implements UserDetails {
 
     private String username;
     private String email;
+
+    @JsonIgnore
     private String password;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    @JsonIgnore
+    private List<Booking> bookings;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;

@@ -27,7 +27,11 @@ public class BookingService {
     private final ShowRepository showRepository;
     private final UserRepository userRepository;
 
-    public BookingService(BookingService bookingService, BookingRepository bookingRepository, ShowRepository showRepository, UserRepository userRepository) {
+    public BookingService(
+            BookingRepository bookingRepository,
+            ShowRepository showRepository,
+            UserRepository userRepository
+    ) {
         this.bookingRepository = bookingRepository;
         this.showRepository = showRepository;
         this.userRepository = userRepository;
@@ -43,11 +47,11 @@ public class BookingService {
             throw new SeatsNotAvailableException("Not enough seats available");
         }
 
-        if(bookingDTO.getSeatsNumbers().size() != bookingDTO.getNumberOfSeats()) {
+        if(bookingDTO.getSeatNumbers().size() != bookingDTO.getNumberOfSeats()) {
             throw new SeatsNotAvailableException("Number of seats not available");
         }
 
-        validateDuplicateSeats(show.getId(), bookingDTO.getSeatsNumbers());
+        validateDuplicateSeats(show.getId(), bookingDTO.getSeatNumbers());
 
         User user = userRepository.findById(bookingDTO.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("User Not Found"));
@@ -56,7 +60,7 @@ public class BookingService {
         booking.setUser(user);
         booking.setShow(show);
         booking.setNumberOfSeats(bookingDTO.getNumberOfSeats());
-        booking.setSeatNumbers(bookingDTO.getSeatsNumbers());
+        booking.setSeatNumbers(bookingDTO.getSeatNumbers());
         booking.setPrice(calculateTotalAmount(show.getPrice(), bookingDTO.getNumberOfSeats()));
         booking.setBookingTime(LocalDateTime.now());
         booking.setBookingStatus(BookingStatus.PENDING);

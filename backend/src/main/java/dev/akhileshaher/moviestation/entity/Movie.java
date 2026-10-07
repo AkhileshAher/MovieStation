@@ -1,5 +1,6 @@
 package dev.akhileshaher.moviestation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,5 +22,6 @@ public class Movie {
     private String language;
 
     @OneToMany(mappedBy = "movie",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Show> shows;
 }

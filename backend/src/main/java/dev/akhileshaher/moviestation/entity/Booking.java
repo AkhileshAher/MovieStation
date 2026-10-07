@@ -18,6 +18,7 @@ public class Booking {
     private Integer numberOfSeats;
     private LocalDateTime bookingTime;
     private Double price;
+    
     private BookingStatus bookingStatus;
 
     @ElementCollection(fetch = FetchType.EAGER)
