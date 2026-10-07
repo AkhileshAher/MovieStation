@@ -19,32 +19,32 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @PostMapping("/createshow")
+    @PostMapping()
     public ResponseEntity<Show> createShow(@RequestBody ShowDTO showDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(showService.createShow(showDTO));
     }
 
-    @GetMapping("/getallshows")
+    @GetMapping()
     public ResponseEntity<List<Show>> getAllShows() {
         return ResponseEntity.ok(showService.getAllShows());
     }
 
-    @GetMapping("/getshowsbymovie")
+    @GetMapping("/showsbymovie")
     public ResponseEntity<List<Show>> getShowsByMovie(@RequestParam Long movieId) {
         return ResponseEntity.ok(showService.getShowsByMovie(movieId));
     }
 
-    @GetMapping("/getshowsbytheater")
+    @GetMapping("/showsbytheater")
     public ResponseEntity<List<Show>> getShowsByTheater(@RequestParam Long theaterId) {
         return ResponseEntity.ok(showService.getShowsByTheater(theaterId));
     }
 
-    @PutMapping("/updateshow/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Show> updateShow(@PathVariable Long id,@RequestBody ShowDTO showDTO) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(showService.updateShow(id,showDTO));
     }
 
-    @DeleteMapping("/deleteshow/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteShow(@PathVariable Long id) {
         showService.deleteShow(id);
         return ResponseEntity.noContent().build();

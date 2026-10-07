@@ -20,34 +20,34 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @PostMapping("/addmovie")
+    @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Movie> addMovie(@RequestBody MovieDTO movieDTO) {
         return ResponseEntity.ok(movieService.addMovie(movieDTO));
     }
 
-    @GetMapping("/getallmovies")
+    @GetMapping()
     public ResponseEntity<List<Movie>> getAllMovies() {
         return ResponseEntity.ok(movieService.getAllMovies());
     }
 
-    @GetMapping("/getmoviesbygenre")
+    @GetMapping("/moviesbygenre")
     public ResponseEntity<List<Movie>> getMoviesByGenre(@RequestParam String genre) {
         return ResponseEntity.ok(movieService.getMoviesByGenre(genre));
     }
 
-    @GetMapping("/getmoviesbylanguage")
+    @GetMapping("/moviesbylanguage")
     public ResponseEntity<List<Movie>> getMoviesByLanguage(@RequestParam String language) {
         return ResponseEntity.ok(movieService.getMoviesByLanguage(language));
     }
 
 
-    @GetMapping("/getmoviebytitle")
+    @GetMapping("/moviebytitle")
     public ResponseEntity<Movie> getMovieByTitle(@RequestParam String title) {
         return ResponseEntity.ok(movieService.getMovieByTitle(title));
     }
 
-    @PutMapping("/updatemovie/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody MovieDTO movieDTO) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(movieService.updateMovie(id,movieDTO));

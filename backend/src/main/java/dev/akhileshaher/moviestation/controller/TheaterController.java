@@ -20,24 +20,24 @@ public class TheaterController {
         this.theaterService = theaterService;
     }
 
-    @PostMapping("/addtheater")
+    @PostMapping()
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Theater> addTheater(@RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(theaterService.addTheater(theaterDTO));
     }
 
-    @GetMapping("/gettheaterbylocation")
+    @GetMapping("/theaterbylocation")
     public ResponseEntity<List<Theater>> getTheaterByLocation(@RequestParam String location){
         return ResponseEntity.ok(theaterService.getTheaterByLocation(location));
     }
 
-    @PutMapping("/updatetheater/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Theater> updateTheater(@PathVariable Long id,@RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(theaterService.updateTheater(id,theaterDTO));
     }
 
-    @DeleteMapping("/deleteTheater/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteTheater(@PathVariable Long id){
         theaterService.deleteTheater(id);

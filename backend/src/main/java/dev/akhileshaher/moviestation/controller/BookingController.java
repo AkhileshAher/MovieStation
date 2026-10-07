@@ -21,17 +21,17 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping("/createbooking")
+    @PostMapping()
     public ResponseEntity<Booking> createBooking(@RequestBody BookingDTO bookingDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.createBooking(bookingDTO));
     }
 
-    @GetMapping("/getUserBookings/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long userId) {
         return ResponseEntity.ok(bookingService.getUserBookings(userId));
     }
 
-    @GetMapping("/getshowbookings/{id}")
+    @GetMapping("/show/{id}")
     public ResponseEntity<List<Booking>> getShowBookings(@PathVariable Long showId) {
         return ResponseEntity.ok(bookingService.getShowBookings(showId));
     }
@@ -46,7 +46,7 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(bookingService.cancelBooking(id));
     }
 
-    @GetMapping("/getbookingsbystatus/{status}")
+    @GetMapping("/status/{status}")
     public ResponseEntity<List<Booking>> getBookingsByStatus(@PathVariable BookingStatus bookingStatus) {
         return ResponseEntity.ok(bookingService.getBookingsByStatus(bookingStatus));
     }
